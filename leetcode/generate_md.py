@@ -3,12 +3,15 @@ class Solution:
         self.title = title
         self.link = link
         self.code = code
+
     def get_md_title(self, source_lines):
         title = source_lines[0].split(". ")[1][:-1]
         return title
+
     def get_md_link(self, source_lines):
         link = source_lines[1].split("/")[-2]
         return link
+
     def get_md_formatsolution(self, source_lines):
         code = source_lines[3::]
         new_code = ""
@@ -16,10 +19,11 @@ class Solution:
             new_code += new_line
         new_code = "```python\n" + new_code + "\n```"
         return new_code
+
     def get_Leetcodelink(self, source_lines):
         leetlink = source_lines[1]
         return leetlink
-        
+
 with open("source_leetcode_data.txt", 'r') as in_file:
     source_lines = in_file.readlines()
 title = source_lines[0].split(". ")[:-1]
