@@ -1,4 +1,4 @@
-class LeetCodeSol:
+class Solution:
     def __init__(self, title, link, code):
         self.title = title
         self.link = link
@@ -36,8 +36,8 @@ for i in range(1, len(source_lines1)):
         other += source_lines1[i]
 out_file = open("intervals.md", 'w')
 out_file.write("# {}\n\n{}".format("Intervals", plus))
-out_file.write("+[{}](#{}){}\n".format(LeetCodeSol.get_md_title(title, source_lines), LeetCodeSol.get_md_link(link, source_lines), other))
-out_file.write("\n## {}\n\n".format(LeetCodeSol.get_md_title(title, source_lines)))
-out_file.write("{}\n".format((LeetCodeSol.get_Leetcodelink(leetlink, source_lines))))
-out_file.write("{}".format(LeetCodeSol.get_md_formatsolution(code, source_lines)))
+out_file.write("+[{}](#{}){}\n".format(Solution.get_md_title(title, source_lines), Solution.get_md_link(link, source_lines), other))
+out_file.write("\n## {}\n\n".format(Solution.get_md_title(title, source_lines)))
+out_file.write("{}\n".format((Solution.get_Leetcodelink(leetlink, source_lines))))
+out_file.write("{}".format(Solution.get_md_formatsolution(code, source_lines)))
 out_file.close()
