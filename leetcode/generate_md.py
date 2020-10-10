@@ -32,7 +32,7 @@ link = source_lines[1].split("/")[-2]
 code = source_lines[3::]
 leetlink = source_lines[1]
 plus, other = '', ''
-with open("intervals.md", 'r') as in_file:
+with open("intervals.md", 'a') as in_file:
     source_lines1 = in_file.readlines()
 for i in range(1, len(source_lines1)):
     if source_lines1[i][0] == "+":
