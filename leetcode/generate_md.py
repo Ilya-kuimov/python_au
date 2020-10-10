@@ -19,3 +19,25 @@ Class Solution:
     def m(self, source_lines):
         leetlink = source_lines[1]
         return leetlink
+        
+with open("source_leetcode_data.txt", 'r') as in_file:
+    source_lines = in_file.readlines()
+title = source_lines[0].split(". ")[:-1]
+link = source_lines[1].split("/")[-2]
+code = source_lines[3::]
+leetlink = source_lines[1]
+plus, other = '', ''
+with open("intervals.md", 'r') as in_file:
+    source_lines1 = in_file.readlines()
+for i in range(1, len(source_lines1)):
+    if source_lines1[i][0] == "+":
+        plus += source_lines1[i]
+    else:
+        other += source_lines1[i]
+out_file = open("intervals.md", 'w')
+out_file.write("# {}\n\n{}".format("Intervals", plus))
+out_file.write("+ [{}](#{}){}\n".format(LeetCodeSol.d(title, source_lines), LeetCodeSol.c(link, source_lines), other))
+out_file.write("\n## {}\n\n".format(LeetCodeSol.d(title, source_lines)))
+out_file.write("{}\n".format((LeetCodeSol.m(leetlink, source_lines))))
+out_file.write("{}".format(LeetCodeSol.v(code, source_lines)))
+out_file.close()
