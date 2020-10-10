@@ -1,4 +1,4 @@
-Class Solution:
+class Solution:
     def __init__(self, title, link, code):
         self.title = title
         self.link = link
