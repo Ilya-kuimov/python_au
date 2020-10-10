@@ -1,5 +1,5 @@
 Class Solution:
-    def f(self, title, link, code):
+    def __init__(self, title, link, code):
         self.title = title
         self.link = link
         self.code = code
