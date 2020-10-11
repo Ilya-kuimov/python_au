@@ -1,4 +1,4 @@
-def GetName(all_lines):
+def m(all_lines):
     name = all_lines[0]
     name_list = list(name)
     name_list[0] = ''
@@ -28,11 +28,11 @@ def GetCode(all_lines):
 def PrintMarkDown(all_lines):
     for i in range(len(all_linked_lines)):
         if all_linked_lines[i] == '':
-            all_linked_lines.insert(i, '+ [{}](#{})'.format(GetName(all_lines)[0], GetName(all_lines)[1]))
+            all_linked_lines.insert(i, '+ [{}](#{})'.format(m(all_lines)[0], m(all_lines)[1]))
             break
     for i in all_linked_lines:
         print(i, file=fout)
-    print('## ' + str(GetName(all_lines)[0]), file=fout)
+    print('## ' + str(m(all_lines)[0]), file=fout)
     print(GetUrl(all_lines), file=fout)
     GetCode(all_lines)
 
