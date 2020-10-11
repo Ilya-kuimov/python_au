@@ -1,13 +1,11 @@
-Non-overlapping Intervals
-https://leetcode.com/problems/non-overlapping-intervals/
-def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        intervals = sorted(intervals)
-        prev = float("-inf")
-        count = 0
-        for i in intervals:
-            if i[0]>=prev:
-                prev = i[1]
-            else:
-                count +=1
-                prev = min(prev,i[1])
-        return count
+141. Linked List Cycle
+https://leetcode.com/problems/linked-list-cycle/
+class Solution:
+    def hasCycle(self, head):
+        visited_nodes=set()
+        while head:
+            if head in visited_nodes:
+                return True
+            visited_nodes.add(head)
+            head=head.next
+        return False
