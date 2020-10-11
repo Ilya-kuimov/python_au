@@ -1,48 +1,45 @@
-class Solution:
-def __init__(self, title, link, code):
-        self.title = title
-        self.link = link
-        self.code = code
+def GetName(all_lines):
+    name = all_lines[0]
+    name_list = list(name)
+    name_list[0] = ''
+    i = 1
+    while name_list[i - 1] != '.':
+        name_list[i - 1] = ''
+        i += 1
+    dot_place = name.find('.')
+    name_list[dot_place] = ''
+    name.strip()
+    name = ''.join(name_list)
+    name1 = "-".join(name.split())
+    return [name, name1]
 
-    def get_md_title(self, source_lines):
-        title = source_lines[0].split(". ")[1][:-1]
-        return title
 
-    def get_md_link(self, source_lines):
-        link = source_lines[1].split("/")[-2]
-        return link
+def GetUrl(all_lines):
+    return all_lines[1]
 
-    def get_md_formatsolution(self, source_lines):
-        code = source_lines[3::]
-        new_code = ""
-        for new_line in code:
-            new_code += new_line
-        new_code = "```python\n" + new_code + "\n```"
-        return new_code
 
-    def get_Leetcodelink(self, source_lines):
-        leetlink = source_lines[1]
-        return leetlink
-        
+def GetCode(all_lines):
+    print('```python', file=fout)
+    for i in range(2, len(all_lines)):
+        print(all_lines[i], file=fout)
+    print('```', file=fout)
 
-with open("source_leetcode_data.txt", 'r') as in_file:
-    source_lines = in_file.readlines()
-title = source_lines[0].split(". ")[:-1]
-link = source_lines[1].split("/")[-2]
-code = source_lines[3::]
-leetlink = source_lines[1]
-plus, other = '', ''
-with open("intervals.md", 'a') as in_file:
-    source_lines1 = in_file.readlines()
-for i in range(1, len(source_lines1)):
-    if source_lines1[i][0] == "+":
-        plus += source_lines1[i]
-    else:
-        other += source_lines1[i]
-out_file = open("intervals.md", 'w')
-out_file.write("# {}\n\n{}".format("Intervals", plus))
-out_file.write("+[{}](#{}){}\n".format(Solution.get_md_title(title, source_lines), Solution.get_md_link(link, source_lines), other))
-out_file.write("\n## {}\n\n".format(Solution.get_md_title(title, source_lines)))
-out_file.write("{}\n".format((Solution.get_Leetcodelink(leetlink, source_lines))))
-out_file.write("{}".format(Solution.get_md_formatsolution(code, source_lines)))
-out_file.close()
+
+def PrintMarkDown(all_lines):
+    for i in range(len(all_linked_lines)):
+        if all_linked_lines[i] == '':
+            all_linked_lines.insert(i, '+ [{}](#{})'.format(GetName(all_lines)[0], GetName(all_lines)[1]))
+            break
+    for i in all_linked_lines:
+        print(i, file=fout)
+    print('## ' + str(GetName(all_lines)[0]), file=fout)
+    print(GetUrl(all_lines), file=fout)
+    GetCode(all_lines)
+
+
+with open("source_leetcode_data.txt", 'r') as fin:
+    all_lines = fin.read().splitlines()
+with open('intervals.md', 'r') as fin:
+    all_linked_lines = fin.read().splitlines()
+fout = open("intervals.md", "w")
+PrintMarkDown(all_lines)
