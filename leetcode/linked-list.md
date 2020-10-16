@@ -1,8 +1,13 @@
-# Linked List
 + [ Reorder List](#Reorder-List)
 + [ Middle of the Linked List](#Middle-of-the-Linked-List)
 + [ Merge Two Sorted Lists](#Merge-Two-Sorted-Lists)
 + [ Linked List Cycle](#Linked-List-Cycle)
++ [ Linked List Cycle](#Linked-List-Cycle)
++ [ Linked List Cycle](#Linked-List-Cycle)
++ [ Palindrome Linked List](#Palindrome-Linked-List)
++ [ Remove Nth Node From End of List](#Remove-Nth-Node-From-End-of-List)
++ [ Reverse Linked List](#Reverse-Linked-List)
++ [ Linked List Cycle II](#Linked-List-Cycle-II)
 
 ##  Reorder List
 https://leetcode.com/problems/reorder-list/
@@ -69,4 +74,92 @@ class Solution:
             head=head.next
         return False
 ```
+##  Palindrome Linked List
+https://leetcode.com/problems/palindrome-linked-list/
+```python
+class Solution:
+    def isPalindrome(self, head):
+        if not head:
+            return True
 
+        def reverseList(head):
+            if not (head and head.next):
+                return head
+            previous_element = None
+            current_element = head
+            while current_element:
+                next = current_element.next
+                current_element.next = previous_element
+                previous_element = current_element
+                current_element = next
+            head = previous_element
+            return head
+        memory_head = head
+        count, midPointer = 0, 0
+        newhead = head
+        while (head):
+            if (midPointer != count // 2):
+                newhead = newhead.next
+                midPointer = count // 2
+            count += 1
+            head = head.next
+        secondHalf = reverseList(newhead.next)
+        check = True
+        while (memory_head and secondHalf):
+            if (memory_head.val != secondHalf.val):
+                check = False
+            memory_head = memory_head.next
+            secondHalf = secondHalf.next
+        return check
+```
+##  Remove Nth Node From End of List
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+```python
+class Solution:
+    def removeNthFromEnd(self, head, n):
+        result = head
+        length = 0
+        count = 1
+        while result:
+            result = result.next
+            length += 1
+        result = head
+        number_to_delete = length - n
+        if number_to_delete == 0:
+            head = head.next
+        else:
+            while count < number_to_delete:
+                result = result.next
+                count += 1
+            result.next = result.next.next
+        return head
+```
+##  Reverse Linked List
+https://leetcode.com/problems/reverse-linked-list/
+```python
+class Solution:
+    def reverseList(self, head):
+        if not (head and head.next):
+            return head
+        previous_element = None
+        current_element = head
+        while current_element:
+            next = current_element.next
+            current_element.next = previous_element
+            previous_element = current_element
+            current_element = next
+        head = previous_element
+        return head
+```
+##  Linked List Cycle II
+https://leetcode.com/problems/linked-list-cycle-ii/
+```python
+class Solution:
+    def detectCycle(self, head):
+        visited_nodes=set()
+        while head:
+            if head in visited_nodes:
+                return head
+            visited_nodes.add(head)
+            head=head.next
+```
