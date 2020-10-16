@@ -2,8 +2,6 @@
 + [ Middle of the Linked List](#Middle-of-the-Linked-List)
 + [ Merge Two Sorted Lists](#Merge-Two-Sorted-Lists)
 + [ Linked List Cycle](#Linked-List-Cycle)
-+ [ Linked List Cycle](#Linked-List-Cycle)
-+ [ Linked List Cycle](#Linked-List-Cycle)
 + [ Palindrome Linked List](#Palindrome-Linked-List)
 + [ Remove Nth Node From End of List](#Remove-Nth-Node-From-End-of-List)
 + [ Reverse Linked List](#Reverse-Linked-List)
