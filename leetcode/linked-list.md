@@ -8,6 +8,8 @@
 + [ Remove Nth Node From End of List](#Remove-Nth-Node-From-End-of-List)
 + [ Reverse Linked List](#Reverse-Linked-List)
 + [ Linked List Cycle II](#Linked-List-Cycle-II)
++ [ Intersection of Two Linked Lists](#intersection-of-two-linked-lists)
++ [ Sort List](#sort-list)
 
 ##  Reorder List
 https://leetcode.com/problems/reorder-list/
@@ -162,4 +164,115 @@ class Solution:
                 return head
             visited_nodes.add(head)
             head=head.next
+```
+##  Intersection of Two Linked Lists
+https://leetcode.com/problems/intersection-of-two-linked-lists/
+```python
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        p1 = headА
+        p2 = headB
+        while p1 != p2
+            if p1:
+                p1 = pl.next
+            else:
+                p1 = heads
+            if pa:
+                p2 = p2.next
+            else:
+                p2 = headA
+        return p1
+```
+##  Sort List
+https://leetcode.com/problems/sort-list/
+```python
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        const auto len = lenOf(head);
+        
+        if (len > 1) {
+            head = mergeSort(head, len);
+        }
+        
+        return head;
+    }
+    
+    int lenOf(const ListNode* head) {
+        int len {};
+        
+        for (auto cursor = head; cursor; cursor = cursor->next) {
+            ++len;
+        }
+        
+        return len;
+    }
+    
+    ListNode* mergeSort(ListNode* list, const int len) {
+        if (len <= 1) {
+            return list;
+        }
+        
+        auto list1 = list;
+        auto list1Tail = advance(list, len / 2 - 1);
+        auto list2 = list1Tail->next;
+        
+        list1Tail->next = nullptr;
+        
+        // proof: len / 2 < len when len > 1
+        // proof: len - len / 2 < len when len > 1
+        list1 = mergeSort(list1, len / 2);
+        list2 = mergeSort(list2, len - len / 2);
+        
+        return merge(list1, list2);
+    }
+    
+    ListNode* advance(ListNode* list, const int len) {
+        for (int i = 0; i < len; ++i) {
+            // [head, head + i] are skippted
+            list = list->next;
+        }
+        
+        // [head, head + len] are skipped
+        
+        return list;
+    }
+    
+    ListNode* merge(ListNode* list1, ListNode* list2) {
+        ListNode dummyHead { 0 };
+        
+        auto mergedTail = &dummyHead;
+        
+        // inv: [head, mergedTail] sorted
+        // inv: [list1, ...) need merge
+        // inv: [list2, ...) need merge
+        while (list1 && list2) {
+            const auto v1 = list1->val;
+            const auto v2 = list2->val;
+            
+            if (v1 < v2) {
+                mergedTail->next = list1;
+                
+                list1 = list1->next;
+            } else {
+                mergedTail->next = list2;
+                
+                list2 = list2->next;
+            }
+            
+            mergedTail = mergedTail->next;
+            // advance
+            // mergedTail has been advanced
+            // either list1 or list2 has been advanced
+        }
+        
+        if (list1) {
+            mergedTail->next = list1;
+        } else {
+            mergedTail->next = list2;
+        }
+        
+        return dummyHead.next;
+    }
+};
 ```
