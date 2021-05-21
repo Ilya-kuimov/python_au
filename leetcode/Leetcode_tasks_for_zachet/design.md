@@ -3,6 +3,7 @@
 + [ Min Stack](#min-stack)
 + [ Implement Queue using Stacks](#implement-queue-using-stacks)
 + [ Implement Stack using Queues](#implement-stack-using-queues)
++ [ Design Twitter](#design-twitter)
 
 ##  Min Stack
 https://leetcode.com/problems/min-stack/
@@ -123,5 +124,64 @@ public:
     }
 private:
     queue<int> q1, q2;
+};
+```
+## Design Twitter
+https://leetcode.com/problems/design-twitter/
+```python
+class Twitter:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        # use a map to store the follower, set as container because follower shouldn't duplicate
+        self.following = defaultdict(set)
+        self.user_tweets = defaultdict(deque)
+        self.post = 0
+        
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        """
+        Compose a new tweet.
+        """
+        self.post += 1
+        tweets = self.user_tweets[userId]
+        tweets.append(((self.post), tweetId))
+        if len(tweets) > 10:
+            tweets.popleft()
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        """
+        Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
+        """
+        h = []
+        u = self.user_tweets[userId]
+        h.extend(u)
+        heapify(h)
+        for user in self.following[userId]:
+            tweets = self.user_tweets[user]
+            for x in range(len(tweets) - 1, -1, -1):
+                if len(h) < 10:
+                    heappush(h, tweets[x])
+                else:
+                    if h[0][0] < tweets[x][0]:
+                        heappushpop(h, tweets[x])
+                    else:
+                        break
+        return [heappop(h)[1] for x in range(len(h))][::-1]
+
+    def follow(self, followerId, followeeId):
+        """
+        Follower follows a followee. If the operation is invalid, it should be a no-op.
+        """
+        if followerId != followeeId:
+            self.following[followerId].add(followeeId)
+
+    def unfollow(self, followerId, followeeId):
+        """
+        Follower unfollows a followee. If the operation is invalid, it should be a no-op.
+        """
+        if followerId != followeeId:
+                self.following[followerId].discard(followeeId)
 };
 ```
