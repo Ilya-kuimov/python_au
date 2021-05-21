@@ -42,6 +42,7 @@ class Solution:
  return sortedorder
 ```
 ##  Number of Islands
+https://leetcode.com/problems/number-of-islands/
 ```python
 class Solution {
 
@@ -106,6 +107,7 @@ class Solution {
 }
 ```
 ## Is Graph Bipartite
+https://leetcode.com/problems/is-graph-bipartite/
 ```python
     public boolean isBipartite(int[][] graph) {
         int n = graph.length;
@@ -134,6 +136,7 @@ class Solution {
     }
 ```
 ## Cheapest Flights Within K Stops
+https://leetcode.com/problems/cheapest-flights-within-k-stops/
 ```python
 class Solution {
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
@@ -164,6 +167,7 @@ class Solution {
 }
 ```
 ## Shortest Path in Binary Matrix
+https://leetcode.com/problems/shortest-path-in-binary-matrix/
 ```python
 class Solution {
 public:
@@ -193,6 +197,7 @@ public:
 };
 ```
 ## Maximum Depth of N-ary Tree
+https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
 ```python
 # Definition for a Node.
 class Node:
